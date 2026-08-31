@@ -1,0 +1,51 @@
+{
+  "entities": {
+    "JournalEntry": {
+      "title": "JournalEntry",
+      "description": "User journal entry with AI reflection chat messages and mood tracking",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the journal entry"
+        },
+        "userId": {
+          "type": "string",
+          "description": "ID of the user who owns this journal entry"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the journal reflection"
+        },
+        "previewText": {
+          "type": "string",
+          "description": "Snippet of the first message for previewing in the sidebar"
+        },
+        "mood": {
+          "type": "string",
+          "enum": ["Focused", "Reflective", "Anxious", "Creative", "Happy", "Reflected"],
+          "description": "Current mood tag for the journal entry"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Ordered list of conversation messages between the user and AI"
+        },
+        "createdAt": {
+          "type": "number",
+          "description": "Creation timestamp in milliseconds"
+        },
+        "updatedAt": {
+          "type": "number",
+          "description": "Last modified timestamp in milliseconds"
+        }
+      },
+      "required": ["id", "userId", "title", "messages", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/entries/{entryId}": {
+      "schema": "JournalEntry",
+      "description": "User-isolated private collection of journal reflection entries"
+    }
+  }
+}

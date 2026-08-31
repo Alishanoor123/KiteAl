@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-main: #1A1414;
+    --bg-surface: #221A1A;
+    --bg-card: #2A2121;
+    --bg-card-hover: #332929;
+    --border-subtle: #3D3030;
+    --border-strong: #4D3D3D;
+    --text-primary: #F5EFEB;
+    --text-secondary: #C7BCB8;
+    --text-muted: #8F827E;
+    --accent-rose: #D0888F;
+    --accent-rose-hover: #C47B82;
+    --accent-rose-tint: rgba(208, 136, 143, 0.15);
+  }
+
+  body {
+    background-color: #1A1414;
+    color: #F5EFEB;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Custom Sleek Warm Mocha Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3D3030;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D0888F;
+}
+
+/* Smooth enter animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
