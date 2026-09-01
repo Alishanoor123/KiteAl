@@ -253,7 +253,7 @@ export default function App() {
                 No active reflection
               </h2>
               <p className="text-xs text-[#C7BCB8] mb-6 max-w-sm leading-relaxed">
-                Create a new reflection entry to begin journaling with Gemini.
+                Create a new reflection entry to begin journaling with KiteAI.
               </p>
               <button
                 id="btn-create-blank-entry"

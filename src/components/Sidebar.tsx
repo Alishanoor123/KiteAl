@@ -38,37 +38,37 @@ const MOOD_CONFIG: Record<
     label: 'Focused',
     emoji: '🎯',
     color: 'text-amber-400',
-    badge: 'bg-amber-500/15 text-amber-300 border-amber-400/30',
+    badge: 'bg-amber-500/20 text-amber-300 border-amber-400/30',
   },
   Reflective: {
     label: 'Reflective',
     emoji: '🌙',
     color: 'text-indigo-400',
-    badge: 'bg-indigo-500/15 text-indigo-300 border-indigo-400/30',
+    badge: 'bg-indigo-500/20 text-indigo-300 border-indigo-400/30',
   },
   Anxious: {
     label: 'Anxious',
     emoji: '🌧️',
     color: 'text-purple-400',
-    badge: 'bg-purple-500/15 text-purple-300 border-purple-400/30',
+    badge: 'bg-purple-500/20 text-purple-300 border-purple-400/30',
   },
   Creative: {
     label: 'Creative',
     emoji: '💡',
     color: 'text-rose-400',
-    badge: 'bg-rose-500/15 text-rose-300 border-rose-400/30',
+    badge: 'bg-rose-500/20 text-rose-300 border-rose-400/30',
   },
   Happy: {
     label: 'Happy',
     emoji: '😊',
-    color: 'text-[#E5A862]',
-    badge: 'bg-[#E5A862]/15 text-[#E5A862] border-[#E5A862]/30',
+    color: 'text-amber-400',
+    badge: 'bg-amber-500/20 text-amber-300 border-amber-400/30',
   },
   Reflected: {
     label: 'Reflective',
     emoji: '🌙',
-    color: 'text-[#7EB894]',
-    badge: 'bg-[#7EB894]/15 text-[#7EB894] border-[#7EB894]/30',
+    color: 'text-indigo-400',
+    badge: 'bg-indigo-500/20 text-indigo-300 border-indigo-400/30',
   },
 };
 
@@ -150,7 +150,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {/* Mobile backdrop for small screens */}
       <div
         onClick={onClose}
-        className="fixed inset-0 bg-black/60 backdrop-blur-xs z-40 md:hidden animate-fade-in"
+        className="fixed inset-0 bg-black/70 backdrop-blur-xs z-40 md:hidden animate-fade-in"
       />
 
       <aside
@@ -158,20 +158,20 @@ export const Sidebar: React.FC<SidebarProps> = ({
         className="fixed md:relative inset-y-0 left-0 z-40 w-72 sm:w-80 h-full shrink-0 bg-[#221A1A] border-r border-[#3D3030] flex flex-col transition-all duration-200 ease-in-out shadow-2xl md:shadow-none select-none overflow-hidden"
       >
         {/* Top Header & New Button */}
-        <div className="p-3.5 border-b border-[#3D3030] flex flex-col gap-3 bg-[#261E1E] shrink-0">
+        <div className="p-3.5 border-b border-[#3D3030] flex flex-col gap-3 bg-[#221A1A] shrink-0">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <button
                 id="btn-sidebar-toggle-header"
                 onClick={onClose}
-                className="p-1 rounded-lg text-[#C7BCB8] hover:text-[#F5EFEB] hover:bg-[#2A2121] transition-colors cursor-pointer border border-[#3D3030] hover:border-[#D0888F]/40 flex items-center justify-center"
+                className="p-1 rounded-lg text-[#8F827E] hover:text-[#F5EFEB] hover:bg-[#2A2121] transition-colors cursor-pointer border border-[#3D3030] hover:border-[#D0888F]/40 flex items-center justify-center"
                 title="Collapse sidebar"
                 aria-label="Collapse sidebar"
               >
                 <PanelLeftClose className="w-3.5 h-3.5 text-[#D0888F]" />
               </button>
               <BookOpen className="w-4 h-4 text-[#D0888F]" />
-              <h2 className="text-xs font-bold uppercase tracking-wider text-[#C7BCB8]">
+              <h2 className="text-xs font-bold uppercase tracking-wider text-[#F5EFEB]">
                 Reflections
               </h2>
             </div>
@@ -227,12 +227,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 <FileText className="w-5 h-5" />
               </div>
               <p className="text-xs font-semibold text-[#F5EFEB]">No reflections yet</p>
-              <p className="text-[11px] text-[#8F827E] mt-1 mb-4 leading-relaxed">
-                Start your first guided journaling entry with Gemini.
+              <p className="text-[11px] text-[#C7BCB8] mt-1 mb-4 leading-relaxed">
+                Start your first guided journaling entry with Kite AI.
               </p>
               <button
                 onClick={onNewEntry}
-                className="px-4 py-1.5 bg-[#D0888F] hover:bg-[#C47B82] text-[#1A1414] rounded-lg text-xs font-bold transition-all shadow-md cursor-pointer"
+                className="px-4 py-1.5 bg-[#D0888F] hover:bg-[#C47B82] text-[#1A1414] rounded-xl text-xs font-bold transition-all shadow-md shadow-[#D0888F]/20 cursor-pointer"
               >
                 Start Reflection
               </button>
@@ -262,8 +262,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
                         key={entry.id}
                         className={`group relative rounded-xl transition-all border ${
                           isSelected
-                            ? 'bg-[#2A2121] border-[#D0888F]/50 shadow-sm'
-                            : 'bg-[#261E1E]/50 hover:bg-[#2A2121] border-transparent hover:border-[#3D3030]'
+                            ? 'bg-[#2A2121] border-[#D0888F] shadow-md'
+                            : 'bg-[#221A1A] hover:bg-[#2A2121] border-[#3D3030]'
                         }`}
                       >
                         <button
@@ -284,7 +284,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                               />
                               <h3
                                 className={`text-xs truncate ${
-                                  isSelected ? 'text-[#F5EFEB] font-bold' : 'text-[#C7BCB8] group-hover:text-[#F5EFEB] font-medium'
+                                  isSelected ? 'text-[#F5EFEB] font-bold' : 'text-[#F5EFEB] font-medium'
                                 }`}
                               >
                                 {entry.title || 'Untitled Reflection'}
@@ -301,7 +301,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                           </div>
 
                           {entry.previewText && (
-                            <p className="text-[11px] line-clamp-2 mb-2 leading-relaxed text-[#8F827E] group-hover:text-[#C7BCB8] break-words">
+                            <p className="text-[11px] line-clamp-2 mb-2 leading-relaxed text-[#C7BCB8] group-hover:text-[#F5EFEB] break-words">
                               {entry.previewText}
                             </p>
                           )}
@@ -344,7 +344,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                               setEntryToDelete(entry);
                             }}
                             title="Delete reflection"
-                            className="p-1 rounded-md transition-colors cursor-pointer hover:bg-rose-500/20 text-[#8F827E] hover:text-[#D0888F]"
+                            className="p-1 rounded-md transition-colors cursor-pointer hover:bg-rose-500/10 text-[#8F827E] hover:text-rose-400"
                           >
                             <Trash2 className="w-3 h-3" />
                           </button>
@@ -359,12 +359,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         {/* Footer info bar */}
-        <div className="p-3 border-t border-[#3D3030] text-[11px] text-[#8F827E] flex items-center justify-between bg-[#261E1E] shrink-0">
+        <div className="p-3 border-t border-[#3D3030] text-[11px] text-[#8F827E] flex items-center justify-between bg-[#221A1A] shrink-0">
           <span className="flex items-center gap-1.5 text-[10px]">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
             <span>Encrypted Firestore</span>
           </span>
-          <span className="text-[10px] text-[#D0888F] bg-[#D0888F]/10 border border-[#D0888F]/20 px-2 py-0.5 rounded font-mono font-medium">
+          <span className="text-[10px] text-[#D0888F] bg-[#D0888F]/10 border border-[#D0888F]/20 px-2 py-0.5 rounded-full font-mono font-medium">
             Active
           </span>
         </div>

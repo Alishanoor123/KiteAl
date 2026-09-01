@@ -85,28 +85,28 @@ const MOODS: {
     label: 'Focused',
     emoji: '🎯',
     color: 'text-amber-400',
-    activeClass: 'bg-amber-500/20 text-amber-300 border-amber-400/40 font-semibold',
+    activeClass: 'bg-amber-500/20 text-amber-300 border-amber-400/50 font-semibold',
   },
   {
     id: 'Reflective',
     label: 'Reflective',
     emoji: '🌙',
     color: 'text-indigo-400',
-    activeClass: 'bg-indigo-500/20 text-indigo-200 border-indigo-400/40 font-semibold',
+    activeClass: 'bg-indigo-500/20 text-indigo-300 border-indigo-400/50 font-semibold',
   },
   {
     id: 'Anxious',
     label: 'Anxious',
     emoji: '🌧️',
     color: 'text-purple-400',
-    activeClass: 'bg-purple-500/20 text-purple-200 border-purple-400/40 font-semibold',
+    activeClass: 'bg-purple-500/20 text-purple-300 border-purple-400/50 font-semibold',
   },
   {
     id: 'Creative',
     label: 'Creative',
     emoji: '💡',
     color: 'text-rose-400',
-    activeClass: 'bg-rose-500/20 text-rose-200 border-rose-400/40 font-semibold',
+    activeClass: 'bg-rose-500/20 text-rose-300 border-rose-400/50 font-semibold',
   },
 ];
 
@@ -399,7 +399,7 @@ export const JournalEditor: React.FC<JournalEditorProps> = ({
   return (
     <div className="flex-1 flex flex-col h-full min-h-0 bg-[#1A1414] overflow-hidden w-full">
       {/* 1. Ultra-Clean Single-Row Subheader: Title, Lens Mode, Mood & Actions */}
-      <div className="bg-[#221A1A] border-b border-[#3D3030] px-4 sm:px-6 py-2.5 shrink-0 z-20 shadow-xs">
+      <div className="bg-[#221A1A] border-b border-[#3D3030] px-4 sm:px-6 py-2.5 shrink-0 z-20 shadow-md">
         <div className="flex items-center justify-between gap-4 w-full max-w-6xl mx-auto">
           {/* Left: Title & Word Count with Generous Spacing */}
           <div className="flex items-center gap-3 flex-1 min-w-0">
@@ -407,7 +407,7 @@ export const JournalEditor: React.FC<JournalEditorProps> = ({
               <button
                 id="btn-expand-sidebar"
                 onClick={onToggleSidebar}
-                className="p-1.5 rounded-xl text-[#C7BCB8] hover:text-[#F5EFEB] hover:bg-[#2A2121] transition-colors border border-[#3D3030] cursor-pointer flex items-center justify-center shrink-0"
+                className="p-1.5 rounded-xl text-[#8F827E] hover:text-[#F5EFEB] hover:bg-[#2A2121] transition-colors border border-[#3D3030] cursor-pointer flex items-center justify-center shrink-0"
                 title="Open sidebar"
                 aria-label="Open sidebar"
               >
@@ -439,7 +439,7 @@ export const JournalEditor: React.FC<JournalEditorProps> = ({
               </div>
             )}
 
-            <span className="hidden md:inline-flex text-[11px] font-mono text-[#8F827E] bg-[#2A2121] border border-[#3D3030] px-2 py-0.5 rounded-full shrink-0">
+            <span className="hidden md:inline-flex text-[11px] font-mono text-[#C7BCB8] bg-[#2A2121] border border-[#3D3030] px-2 py-0.5 rounded-full shrink-0">
               {totalWords} words
             </span>
           </div>
@@ -451,7 +451,7 @@ export const JournalEditor: React.FC<JournalEditorProps> = ({
               <button
                 id="btn-lens-mode-dropdown"
                 onClick={() => setIsLensDropdownOpen((prev) => !prev)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-[#2A2121] hover:bg-[#332929] border border-[#3D3030] text-[#F5EFEB] transition-all cursor-pointer shadow-xs"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-[#2A2121] hover:bg-[#332929] border border-[#3D3030] text-[#F5EFEB] transition-all cursor-pointer shadow-sm"
                 title="Change AI Inquiry Lens"
               >
                 <CurrentModeIcon className="w-3.5 h-3.5 text-[#D0888F]" />
@@ -476,7 +476,7 @@ export const JournalEditor: React.FC<JournalEditorProps> = ({
                         }}
                         className={`w-full flex items-start gap-2.5 p-2 rounded-lg text-left text-xs transition-colors cursor-pointer ${
                           isSelected
-                            ? 'bg-[#D0888F]/15 text-[#D0888F] font-bold'
+                            ? 'bg-[#D0888F]/10 text-[#D0888F] font-bold'
                             : 'text-[#C7BCB8] hover:bg-[#2A2121] hover:text-[#F5EFEB]'
                         }`}
                       >
@@ -510,11 +510,11 @@ export const JournalEditor: React.FC<JournalEditorProps> = ({
               <button
                 id="btn-copy-entry"
                 onClick={handleCopyAll}
-                className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-xl border border-[#3D3030] bg-[#2A2121] hover:bg-[#332929] hover:border-[#D0888F]/40 text-[#C7BCB8] hover:text-[#F5EFEB] text-xs font-semibold transition-all cursor-pointer shadow-xs flex items-center gap-1.5"
+                className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-xl border border-[#3D3030] bg-[#2A2121] hover:bg-[#332929] text-[#C7BCB8] hover:text-[#F5EFEB] text-xs font-semibold transition-all cursor-pointer shadow-xs flex items-center gap-1.5"
                 title="Copy entire conversation thread"
               >
                 {copiedAll ? (
-                  <Check className="w-3.5 h-3.5 text-emerald-400 font-bold" />
+                  <Check className="w-3.5 h-3.5 text-[#D0888F] font-bold" />
                 ) : (
                   <Copy className="w-3.5 h-3.5 text-[#D0888F]" />
                 )}
@@ -526,7 +526,7 @@ export const JournalEditor: React.FC<JournalEditorProps> = ({
               <button
                 id="btn-export-markdown"
                 onClick={handleExportMarkdown}
-                className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-xl border border-[#3D3030] bg-[#2A2121] hover:bg-[#332929] hover:border-[#D0888F]/40 text-[#C7BCB8] hover:text-[#F5EFEB] text-xs font-semibold transition-all cursor-pointer shadow-xs flex items-center gap-1.5"
+                className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-xl border border-[#3D3030] bg-[#2A2121] hover:bg-[#332929] text-[#C7BCB8] hover:text-[#F5EFEB] text-xs font-semibold transition-all cursor-pointer shadow-xs flex items-center gap-1.5"
                 title="Export as Markdown document"
               >
                 <Download className="w-3.5 h-3.5 text-[#D0888F]" />
@@ -554,14 +554,14 @@ export const JournalEditor: React.FC<JournalEditorProps> = ({
         {/* Empty State with Starters */}
         {(!entry.messages || entry.messages.length === 0) && (
           <div className="max-w-3xl mx-auto py-8 sm:py-12 text-center animate-fade-in">
-            <div className="w-14 h-14 rounded-2xl bg-[#D0888F]/10 border border-[#D0888F]/25 flex items-center justify-center mx-auto mb-4 shadow-xl">
+            <div className="w-14 h-14 rounded-2xl bg-[#D0888F]/10 border border-[#D0888F]/20 flex items-center justify-center mx-auto mb-4 shadow-xl">
               <Brain className="w-7 h-7 text-[#D0888F]" />
             </div>
             <h2 className="text-xl sm:text-2xl font-bold text-[#F5EFEB] mb-2 tracking-tight">
-              Begin Your Executive Reflection
+              Begin Your Mindful Reflection
             </h2>
             <p className="text-xs sm:text-sm text-[#C7BCB8] max-w-lg mx-auto mb-6 leading-relaxed">
-              Write freely. Gemini will distill your thoughts, challenge unexamined assumptions, and help bring structural clarity to your mind.
+              Write freely. Kite AI will distill your thoughts, challenge unexamined assumptions, and help bring structural clarity to your mind.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left max-w-2xl mx-auto">
@@ -569,9 +569,9 @@ export const JournalEditor: React.FC<JournalEditorProps> = ({
                 <button
                   key={idx}
                   onClick={() => setInputText(starter.prompt)}
-                  className="p-3.5 rounded-xl bg-[#221A1A] border border-[#3D3030] hover:border-[#D0888F]/50 hover:bg-[#2A2121] text-left transition-all cursor-pointer group shadow-xs flex flex-col justify-between"
+                  className="p-3.5 rounded-xl bg-[#221A1A] border border-[#3D3030] hover:border-[#D0888F]/50 hover:bg-[#2A2121] text-left transition-all cursor-pointer group shadow-sm flex flex-col justify-between"
                 >
-                  <span className="text-xs font-bold text-[#D0888F] mb-1 group-hover:text-[#E3A8AF]">
+                  <span className="text-xs font-bold text-[#D0888F] mb-1 group-hover:text-[#C47B82]">
                     {starter.title}
                   </span>
                   <p className="text-xs text-[#C7BCB8] group-hover:text-[#F5EFEB] line-clamp-2 leading-relaxed">
@@ -601,8 +601,8 @@ export const JournalEditor: React.FC<JournalEditorProps> = ({
                   <div className="flex items-center gap-2">
                     {isUser ? (
                       <div className="flex items-center gap-1.5">
-                        <div className="w-5 h-5 rounded-full bg-[#3D3030] text-[#C7BCB8] flex items-center justify-center text-[10px] font-bold">
-                          <UserIcon className="w-3 h-3 text-[#C7BCB8]" />
+                        <div className="w-5 h-5 rounded-full bg-[#3D3030] text-[#F5EFEB] flex items-center justify-center text-[10px] font-bold">
+                          <UserIcon className="w-3 h-3 text-[#F5EFEB]" />
                         </div>
                         <span className="text-xs font-bold text-[#F5EFEB]">You</span>
                       </div>
@@ -612,9 +612,9 @@ export const JournalEditor: React.FC<JournalEditorProps> = ({
                           <Sparkles className="w-3 h-3 text-[#1A1414]" />
                         </div>
                         <span className="text-xs font-bold text-[#D0888F]">
-                          Gemini Reflection
+                          Kite AI Reflection
                         </span>
-                        <span className="text-[10px] font-mono text-[#8F827E] bg-[#221A1A] border border-[#3D3030] px-1.5 py-0.2 rounded-md hidden xs:inline font-medium">
+                        <span className="text-[10px] font-mono text-[#C7BCB8] bg-[#221A1A] border border-[#3D3030] px-1.5 py-0.2 rounded-md hidden xs:inline font-medium">
                           {msg.modelUsed || 'gemini-3.7-flash'}
                         </span>
                       </div>
@@ -627,7 +627,7 @@ export const JournalEditor: React.FC<JournalEditorProps> = ({
                     )}
 
                     {entry.mood && isUser && (
-                      <span className="text-[10px] px-2 py-0.2 bg-[#2A2121] border border-[#3D3030] text-[#C7BCB8] rounded-full">
+                      <span className="text-[10px] px-2 py-0.2 bg-[#221A1A] border border-[#3D3030] text-[#C7BCB8] rounded-full">
                         Mood: {entry.mood}
                       </span>
                     )}
@@ -647,7 +647,7 @@ export const JournalEditor: React.FC<JournalEditorProps> = ({
                       title="Copy message"
                     >
                       {isCopied ? (
-                        <Check className="w-3 h-3 text-emerald-400 font-bold" />
+                        <Check className="w-3 h-3 text-[#D0888F] font-bold" />
                       ) : (
                         <Copy className="w-3 h-3" />
                       )}
@@ -657,18 +657,18 @@ export const JournalEditor: React.FC<JournalEditorProps> = ({
 
                 {/* Message Content Bubble - WIDE & HIGH CONTRAST */}
                 <div
-                  className={`w-full rounded-2xl p-5 sm:p-6 text-[15px] sm:text-[16px] leading-[1.75] break-words shadow-sm ${
+                  className={`w-full rounded-2xl p-5 sm:p-6 text-[15px] sm:text-[16px] leading-[1.75] break-words shadow-md ${
                     isUser
-                      ? 'bg-[#2A2121] border border-[#3D3030] text-[#F5EFEB] rounded-tr-xs'
-                      : 'bg-[#221A1A] border border-[#3D3030] text-[#F5EFEB] rounded-tl-xs shadow-md'
+                      ? 'bg-[#D0888F] text-[#1A1414] font-medium rounded-tr-xs border border-[#D0888F]'
+                      : 'bg-[#221A1A] border border-[#3D3030] text-[#F5EFEB] rounded-tl-xs shadow-xl'
                   }`}
                 >
                   {isUser ? (
-                    <p className="whitespace-pre-wrap font-sans text-[#F5EFEB] break-words">
+                    <p className="whitespace-pre-wrap font-sans text-[#1A1414] font-medium break-words">
                       {msg.content}
                     </p>
                   ) : (
-                    <div className="prose prose-invert max-w-none text-[#F5EFEB] prose-p:leading-[1.75] prose-p:text-[#F5EFEB] prose-p:my-2.5 prose-headings:text-[#F5EFEB] prose-headings:font-bold prose-headings:tracking-tight prose-headings:mt-4 prose-headings:mb-2 prose-h1:text-xl prose-h2:text-lg prose-h3:text-base prose-strong:text-[#D0888F] prose-strong:font-bold prose-ul:my-2.5 prose-ul:list-disc prose-ul:pl-5 prose-li:my-1 prose-li:text-[#F5EFEB] prose-ol:my-2.5 prose-ol:list-decimal prose-ol:pl-5 prose-code:text-[#D0888F] prose-code:bg-[#1A1414] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-xs prose-blockquote:border-l-3 prose-blockquote:border-[#D0888F] prose-blockquote:bg-[#D0888F]/5 prose-blockquote:pl-4 prose-blockquote:py-1.5 prose-blockquote:my-3 prose-blockquote:rounded-r-lg prose-blockquote:italic prose-blockquote:text-[#C7BCB8] break-words">
+                    <div className="prose max-w-none text-[#F5EFEB] prose-p:leading-[1.75] prose-p:text-[#F5EFEB] prose-p:my-2.5 prose-headings:text-[#F5EFEB] prose-headings:font-bold prose-headings:tracking-tight prose-headings:mt-4 prose-headings:mb-2 prose-h1:text-xl prose-h2:text-lg prose-h3:text-base prose-strong:text-[#D0888F] prose-strong:font-bold prose-ul:my-2.5 prose-ul:list-disc prose-ul:pl-5 prose-li:my-1 prose-li:text-[#F5EFEB] prose-ol:my-2.5 prose-ol:list-decimal prose-ol:pl-5 prose-code:text-[#D0888F] prose-code:bg-[#2A2121] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-xs prose-blockquote:border-l-3 prose-blockquote:border-[#D0888F] prose-blockquote:bg-[#2A2121]/50 prose-blockquote:pl-4 prose-blockquote:py-1.5 prose-blockquote:my-3 prose-blockquote:rounded-r-lg prose-blockquote:italic prose-blockquote:text-[#C7BCB8] break-words">
                       <Markdown>{msg.content}</Markdown>
                     </div>
                   )}
@@ -684,12 +684,12 @@ export const JournalEditor: React.FC<JournalEditorProps> = ({
                 <div className="w-5 h-5 rounded-lg bg-gradient-to-tr from-[#D0888F] via-[#C47B82] to-[#E5A862] p-0.5 flex items-center justify-center shadow-xs">
                   <Sparkles className="w-3 h-3 text-[#1A1414]" />
                 </div>
-                <span className="text-xs font-bold text-[#D0888F]">Gemini AI</span>
+                <span className="text-xs font-bold text-[#D0888F]">Kite AI</span>
                 <span className="text-[10px] px-2 py-0.2 bg-[#D0888F]/10 text-[#D0888F] border border-[#D0888F]/20 rounded-full animate-pulse font-medium">
                   synthesizing reflection...
                 </span>
               </div>
-              <div className="w-full rounded-2xl rounded-tl-xs p-5 bg-[#221A1A] border border-[#3D3030] shadow-md flex items-center gap-3">
+              <div className="w-full rounded-2xl rounded-tl-xs p-5 bg-[#221A1A] border border-[#3D3030] shadow-xl flex items-center gap-3">
                 <Loader2 className="w-5 h-5 text-[#D0888F] animate-spin shrink-0" />
                 <p className="text-sm text-[#C7BCB8] font-medium">
                   Synthesizing mindful reflection with Gemini 3.7 Flash...
@@ -700,17 +700,28 @@ export const JournalEditor: React.FC<JournalEditorProps> = ({
 
           {/* Error Notification */}
           {errorMessage && (
-            <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs sm:text-sm flex items-center justify-between gap-3 shadow-sm">
-              <div className="flex items-center gap-2">
+            <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-[#F5EFEB] text-xs sm:text-sm flex items-center justify-between gap-3 shadow-sm">
+              <div className="flex items-center gap-2 min-w-0">
                 <AlertCircle className="w-4 h-4 shrink-0 text-rose-400" />
-                <span>{errorMessage}</span>
+                <span className="truncate text-rose-200">{errorMessage}</span>
               </div>
-              <button
-                onClick={() => setErrorMessage(null)}
-                className="text-rose-300 hover:text-rose-100 font-bold hover:underline shrink-0 ml-2 cursor-pointer text-xs uppercase tracking-wider"
-              >
-                Dismiss
-              </button>
+              <div className="flex items-center gap-2 shrink-0">
+                <button
+                  onClick={() => {
+                    setErrorMessage(null);
+                    handleSendMessage();
+                  }}
+                  className="px-2.5 py-1 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/40 text-xs font-bold transition-all cursor-pointer"
+                >
+                  Retry
+                </button>
+                <button
+                  onClick={() => setErrorMessage(null)}
+                  className="text-[#C7BCB8] hover:text-[#F5EFEB] font-medium hover:underline cursor-pointer text-xs"
+                >
+                  Dismiss
+                </button>
+              </div>
             </div>
           )}
 
@@ -719,7 +730,7 @@ export const JournalEditor: React.FC<JournalEditorProps> = ({
       </div>
 
       {/* 3. SLIM, UNCLUTTERED FLOATING PROMPT COMPOSER WITH MOOD SELECTOR */}
-      <div className="shrink-0 p-3 sm:p-4 bg-[#221A1A] border-t border-[#3D3030] z-20 shadow-lg">
+      <div className="shrink-0 p-3 sm:p-4 bg-[#221A1A] border-t border-[#3D3030] z-20 shadow-xl">
         <div className="max-w-4xl lg:max-w-5xl mx-auto space-y-2">
           {/* 4 Compact Mood Selector Buttons */}
           <div className="flex items-center justify-between gap-2 px-1">
@@ -761,7 +772,7 @@ export const JournalEditor: React.FC<JournalEditorProps> = ({
           </div>
 
           {/* Prompt input box */}
-          <div className="flex items-center gap-2.5 bg-[#2A2121] border border-[#3D3030] focus-within:border-[#D0888F] focus-within:ring-2 focus-within:ring-[#D0888F]/15 rounded-xl px-3 py-2 transition-all shadow-inner">
+          <div className="flex items-center gap-2.5 bg-[#2A2121] border border-[#3D3030] focus-within:border-[#D0888F] focus-within:ring-2 focus-within:ring-[#D0888F]/20 rounded-xl px-3 py-2 transition-all shadow-inner">
             <textarea
               id="input-reflection-textarea"
               ref={textareaRef}
@@ -780,7 +791,7 @@ export const JournalEditor: React.FC<JournalEditorProps> = ({
               className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer active:scale-95 shrink-0 ${
                 inputText.trim() && !isGenerating
                   ? 'bg-[#D0888F] hover:bg-[#C47B82] text-[#1A1414] shadow-md shadow-[#D0888F]/20'
-                  : 'bg-[#332929] text-[#8F827E] border border-[#3D3030] cursor-not-allowed opacity-70'
+                  : 'bg-[#221A1A] text-[#8F827E] border border-[#3D3030] cursor-not-allowed opacity-70'
               }`}
             >
               {isGenerating ? (

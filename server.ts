@@ -32,10 +32,11 @@ app.get("/api/health", (_req, res) => {
 // Fallback ladder model array with verified modern Gemini models
 const GEMINI_MODELS_LADDER = [
   "gemini-3.7-flash",
-  "gemini-flash-latest",
   "gemini-3.1-flash-lite",
-  "gemini-2.5-flash",
 ];
+
+// Helper for delay
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // Helper to execute a promise with a strict timeout
 function withTimeout<T>(promise: Promise<T>, timeoutMs: number, errorMessage: string): Promise<T> {
@@ -50,7 +51,7 @@ function withTimeout<T>(promise: Promise<T>, timeoutMs: number, errorMessage: st
   });
 }
 
-// Helper to generate content with resilient fallback ladder and timeout
+// Helper to generate content with resilient fallback ladder, exponential backoff, and timeout
 async function generateContentWithFallback(
   ai: GoogleGenAI,
   requestConfig: {
@@ -61,34 +62,68 @@ async function generateContentWithFallback(
   let lastError: any = null;
 
   for (const modelName of GEMINI_MODELS_LADDER) {
-    try {
-      console.log(`[Gemini API] Attempting generateContent with model: ${modelName}`);
-      
-      // Enforce a 14-second timeout per model attempt to prevent hanging
-      const response = await withTimeout(
-        ai.models.generateContent({
-          model: modelName,
-          contents: requestConfig.contents,
-          config: requestConfig.config,
-        }),
-        14000,
-        `Timeout waiting for response from model: ${modelName}`
-      );
+    // Retry up to 2 times per model for transient errors (429, 503, rate limits)
+    const maxRetries = 2;
+    for (let attempt = 0; attempt <= maxRetries; attempt++) {
+      try {
+        console.log(`[Gemini API] Attempting generateContent with model: ${modelName} (attempt ${attempt + 1})`);
+        
+        // Enforce a 15-second timeout per model attempt to prevent hanging
+        const response = await withTimeout(
+          ai.models.generateContent({
+            model: modelName,
+            contents: requestConfig.contents,
+            config: requestConfig.config,
+          }),
+          15000,
+          `Timeout waiting for response from model: ${modelName}`
+        );
 
-      const responseText = response.text || "";
-      if (responseText && responseText.trim().length > 0) {
-        console.log(`[Gemini API] Success with model: ${modelName}`);
-        return { text: responseText.trim(), modelUsed: modelName };
+        const responseText = response.text || "";
+        if (responseText && responseText.trim().length > 0) {
+          console.log(`[Gemini API] Success with model: ${modelName}`);
+          return { text: responseText.trim(), modelUsed: modelName };
+        }
+      } catch (err: any) {
+        console.warn(`[Gemini API] Failed or timed out with model ${modelName} (attempt ${attempt + 1}):`, err.message || err);
+        lastError = err;
+        
+        const isRateLimitOrUnavailable =
+          err?.status === 429 ||
+          err?.status === 503 ||
+          (err?.message && (
+            err.message.includes("429") ||
+            err.message.includes("503") ||
+            err.message.includes("RESOURCE_EXHAUSTED") ||
+            err.message.includes("UNAVAILABLE") ||
+            err.message.includes("high demand") ||
+            err.message.includes("quota")
+          ));
+
+        if (isRateLimitOrUnavailable && attempt < maxRetries) {
+          const backoffMs = (attempt + 1) * 1500;
+          console.log(`[Gemini API] Rate limit or high demand detected. Retrying ${modelName} after ${backoffMs}ms...`);
+          await delay(backoffMs);
+          continue;
+        }
+        
+        // If retries exhausted or non-transient error, move to next model in ladder
+        break;
       }
-    } catch (err: any) {
-      console.warn(`[Gemini API] Failed or timed out with model ${modelName}:`, err.message || err);
-      lastError = err;
-      // Continue to next model in ladder immediately
     }
   }
 
+  const isRateLimit = lastError?.message?.includes("429") || lastError?.message?.includes("RESOURCE_EXHAUSTED");
+  const isHighDemand = lastError?.message?.includes("503") || lastError?.message?.includes("UNAVAILABLE") || lastError?.message?.includes("high demand");
+
+  if (isRateLimit) {
+    throw new Error("The Gemini AI service is currently experiencing high request volume. Please wait a moment and click Retry.");
+  } else if (isHighDemand) {
+    throw new Error("The Gemini AI service is temporarily unavailable due to high demand. Please wait a few seconds and try again.");
+  }
+
   throw new Error(
-    `All Gemini fallback models exhausted (${GEMINI_MODELS_LADDER.join(", ")}). Last error: ${lastError?.message || "Unknown error"}`
+    `All Gemini fallback models exhausted (${GEMINI_MODELS_LADDER.join(", ")}). ${lastError?.message || "Please try again later."}`
   );
 }
 

@@ -49,15 +49,15 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onAuthSuccess, onContinu
 
   return (
     <div className="min-h-screen w-full bg-[#1A1414] text-[#F5EFEB] flex flex-col justify-between selection:bg-[#D0888F] selection:text-[#1A1414] relative overflow-y-auto">
-      {/* Subtle warm ambient lighting */}
-      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-b from-[#D0888F]/15 via-[#C47B82]/5 to-transparent blur-3xl pointer-events-none rounded-full" />
+      {/* Warm ambient lighting */}
+      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-b from-[#D0888F]/15 via-[#8F4E55]/5 to-transparent blur-3xl pointer-events-none rounded-full" />
       <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-gradient-to-r from-[#D0888F]/10 to-transparent blur-3xl pointer-events-none rounded-full" />
 
       {/* Top Header Bar */}
       <div className="w-full max-w-5xl mx-auto px-6 py-6 flex items-center justify-between z-10">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#D0888F] via-[#C47B82] to-[#E5A862] p-0.5 shadow-lg shadow-[#D0888F]/20 flex items-center justify-center">
-            <div className="w-full h-full bg-[#221A1A] rounded-[10px] flex items-center justify-center">
+          <div className="w-9 h-9 rounded-2xl bg-gradient-to-tr from-[#D0888F] via-[#C47B82] to-[#E5A862] p-0.5 shadow-sm shadow-[#D0888F]/20 flex items-center justify-center">
+            <div className="w-full h-full bg-[#221A1A] rounded-[14px] flex items-center justify-center">
               <Sparkles className="w-4 h-4 text-[#D0888F]" />
             </div>
           </div>
@@ -66,9 +66,9 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onAuthSuccess, onContinu
           </span>
         </div>
 
-        <div className="flex items-center gap-2 text-xs text-[#C7BCB8] bg-[#221A1A] px-3.5 py-1.5 rounded-full border border-[#3D3030]">
+        <div className="flex items-center gap-2 text-xs text-[#C7BCB8] bg-[#221A1A] px-3.5 py-1.5 rounded-full border border-[#3D3030] shadow-sm">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span>Gemini 3.6 Flash &bull; Cloud Firestore</span>
+          <span>Gemini 3.7 Flash &bull; Cloud Firestore</span>
         </div>
       </div>
 
@@ -76,30 +76,30 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onAuthSuccess, onContinu
       <main className="w-full max-w-3xl mx-auto px-6 py-10 flex-1 flex flex-col justify-center items-center text-center z-10">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#D0888F]/10 border border-[#D0888F]/20 text-[#D0888F] text-xs font-semibold mb-6">
           <Sparkles className="w-3.5 h-3.5 text-[#D0888F]" />
-          <span>MINDFUL EXECUTIVE REFLECTION & JOURNALING</span>
+          <span>EXECUTIVE AI JOURNALING & REFLECTION</span>
         </div>
 
         <h1 className="text-4xl sm:text-5xl lg:text-6xl text-[#F5EFEB] tracking-tight font-extrabold max-w-2xl leading-[1.15] mb-6">
           Clarity for your thoughts, powered by{' '}
           <span className="bg-gradient-to-r from-[#D0888F] via-[#E5A862] to-[#D0888F] bg-clip-text text-transparent">
-            Gemini AI
+            Kite AI
           </span>
           .
         </h1>
 
         <p className="text-base sm:text-lg text-[#C7BCB8] max-w-xl font-sans mb-8 leading-relaxed">
-          Thoughtful inquiry, 4-dimensional mood tracking, and multi-turn executive reflections—safely persisted to your private Cloud Firestore partition.
+          Thoughtful inquiry, mood tracking, and deep reflections—safely persisted to your private journal partition.
         </p>
 
         {/* Auth Action Card */}
-        <div className="w-full max-w-md bg-[#221A1A]/95 backdrop-blur-xl p-6 sm:p-8 rounded-2xl shadow-2xl border border-[#3D3030] mb-10 text-left">
+        <div className="w-full max-w-md bg-[#221A1A] p-6 sm:p-8 rounded-2xl shadow-2xl border border-[#3D3030] mb-10 text-left">
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-sm font-bold text-[#F5EFEB]">Sign In to Your Journal</h2>
-            <span className="text-[10px] text-[#D0888F] bg-[#D0888F]/10 px-2 py-0.5 rounded border border-[#D0888F]/20 font-mono">
+            <span className="text-[10px] text-[#D0888F] bg-[#D0888F]/10 px-2 py-0.5 rounded-full border border-[#D0888F]/20 font-mono font-medium">
               Google OAuth
             </span>
           </div>
-          <p className="text-xs text-[#8F827E] mb-6">
+          <p className="text-xs text-[#C7BCB8] mb-6 leading-relaxed">
             Sign in with Google to load your secure, isolated reflection logs.
           </p>
 
@@ -115,7 +115,7 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onAuthSuccess, onContinu
               id="btn-google-login"
               onClick={handleGoogleSignIn}
               disabled={loading}
-              className="w-full flex items-center justify-center gap-3 py-3 px-4 rounded-xl bg-[#D0888F] hover:bg-[#C47B82] text-[#1A1414] font-bold text-sm transition-all duration-150 shadow-md hover:shadow-lg disabled:opacity-50 cursor-pointer"
+              className="w-full flex items-center justify-center gap-3 py-3 px-4 rounded-xl bg-[#D0888F] hover:bg-[#C47B82] text-[#1A1414] font-bold text-sm transition-all duration-150 shadow-lg shadow-[#D0888F]/20 disabled:opacity-50 cursor-pointer active:scale-95"
             >
               {loading ? (
                 <>
@@ -152,18 +152,18 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onAuthSuccess, onContinu
               <button
                 id="btn-guest-mode"
                 onClick={onContinueAsGuest}
-                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-[#2A2121] hover:bg-[#332929] border border-[#3D3030] hover:border-[#D0888F]/50 text-[#C7BCB8] hover:text-[#F5EFEB] text-xs font-semibold transition-all cursor-pointer"
+                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-[#2A2121] hover:bg-[#332929] border border-[#3D3030] hover:border-[#D0888F]/40 text-[#C7BCB8] hover:text-[#F5EFEB] text-xs font-semibold transition-all cursor-pointer"
               >
                 <span>Try Instant Reflection as Guest</span>
               </button>
             )}
           </div>
 
-          <div className="mt-4 pt-4 border-t border-[#3D3030] flex items-center justify-between text-[11px] text-[#8F827E]">
+          <div className="mt-5 pt-4 border-t border-[#3D3030] flex items-center justify-between text-[11px] text-[#8F827E]">
             <span className="flex items-center gap-1">
-              <Lock className="w-3 h-3 text-[#8F827E]" /> Direct Google Auth
+              <Lock className="w-3 h-3 text-[#D0888F]" /> Direct Google Auth
             </span>
-            <span className="text-emerald-400 font-medium flex items-center gap-1">
+            <span className="text-[#D0888F] font-medium flex items-center gap-1">
               <CheckCircle2 className="w-3 h-3 text-emerald-400" /> Firestore Isolated
             </span>
           </div>
@@ -171,33 +171,33 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onAuthSuccess, onContinu
 
         {/* Feature 3-Pillars Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl text-left">
-          <div className="p-4 rounded-xl bg-[#221A1A] border border-[#3D3030] shadow-xs">
+          <div className="p-4 rounded-xl bg-[#221A1A] border border-[#3D3030]">
             <div className="w-8 h-8 rounded-lg bg-[#D0888F]/10 border border-[#D0888F]/20 flex items-center justify-center mb-2.5 text-[#D0888F]">
               <BrainCircuit className="w-4 h-4" />
             </div>
-            <h3 className="text-xs font-bold text-[#F5EFEB] mb-1">Gemini 3.6 Flash Matrix</h3>
-            <p className="text-[11px] text-[#8F827E] leading-relaxed">
-              Auto-failover ladder across 3.6 Flash, 3.1 Flash-Lite, and 3.7 Flash.
+            <h3 className="text-xs font-bold text-[#F5EFEB] mb-1">Executive Inquiry</h3>
+            <p className="text-[11px] text-[#C7BCB8] leading-relaxed">
+              Auto-failover ladder across Gemini Flash models for instant reflection.
             </p>
           </div>
 
-          <div className="p-4 rounded-xl bg-[#221A1A] border border-[#3D3030] shadow-xs">
+          <div className="p-4 rounded-xl bg-[#221A1A] border border-[#3D3030]">
             <div className="w-8 h-8 rounded-lg bg-[#E5A862]/10 border border-[#E5A862]/20 flex items-center justify-center mb-2.5 text-[#E5A862]">
               <HeartHandshake className="w-4 h-4" />
             </div>
             <h3 className="text-xs font-bold text-[#F5EFEB] mb-1">4-Dimensional Moods</h3>
-            <p className="text-[11px] text-[#8F827E] leading-relaxed">
-              Tag entries as Happy, Anxious, Creative, or Reflected to calibrate Gemini's tone.
+            <p className="text-[11px] text-[#C7BCB8] leading-relaxed">
+              Tag entries as Happy, Anxious, Creative, or Focused to calibrate the AI response.
             </p>
           </div>
 
-          <div className="p-4 rounded-xl bg-[#221A1A] border border-[#3D3030] shadow-xs">
+          <div className="p-4 rounded-xl bg-[#221A1A] border border-[#3D3030]">
             <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-2.5 text-emerald-400">
               <Shield className="w-4 h-4" />
             </div>
-            <h3 className="text-xs font-bold text-[#F5EFEB] mb-1">Owner-Isolated Storage</h3>
-            <p className="text-[11px] text-[#8F827E] leading-relaxed">
-              Server-side API keys and Firestore security rules safeguard your private logs.
+            <h3 className="text-xs font-bold text-[#F5EFEB] mb-1">Private Cloud Storage</h3>
+            <p className="text-[11px] text-[#C7BCB8] leading-relaxed">
+              Server-side protection and Firestore security rules safeguard your private logs.
             </p>
           </div>
         </div>
@@ -205,7 +205,7 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onAuthSuccess, onContinu
 
       {/* Footer */}
       <footer className="w-full max-w-5xl mx-auto px-6 py-4 border-t border-[#3D3030] flex flex-col sm:flex-row items-center justify-between text-xs text-[#8F827E] gap-2 z-10">
-        <span>Gemini AI Reflection Companion</span>
+        <span>Kite AI Reflection Companion</span>
         <span>Secured with Firebase Auth & Cloud Firestore</span>
       </footer>
     </div>

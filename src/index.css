@@ -24,7 +24,7 @@
     min-height: 100vh;
   }
 
-  font-mono {
+  .font-mono {
     font-family: 'JetBrains Mono', monospace;
   }
 }
